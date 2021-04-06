@@ -13,10 +13,24 @@ public class Manager extends Employee {
         super.setTier(tier);
     }
 
+    public int getBonus() {
+        return bonus;
+    }
+
+    @Override
+    public void adjustSalary(double change, Employee employee) throws Exception {
+        if (employee.getTier() == 1 && !isIn(employee)) {
+            throw new Exception("ERROR: cannot alter salary of an Employee who is not a report.");
+        }
+        super.adjustSalary(change, employee);
+    }
 
     public void hire(Employee employee) throws Exception {
-        if (employee.getTier() > 2) {
-            throw new Exception("Exception in thread \"main\" java.lang.Exception: ERROR: cannot hire an Employee of an equal or greater tier.");
+        if (employee.getTier() >= 2) {
+            throw new Exception("ERROR: cannot hire an Employee of an equal or greater tier.");
+        }
+        else if (employee.getTier() != 1) {
+            throw new Exception("ERROR: cannot supervise an Employee of an equal or greater tier.");
         }
         else {
             reports.add(employee);
@@ -34,11 +48,11 @@ public class Manager extends Employee {
     }
 
     public void fire(Employee employee) throws Exception {
-        if (employee.getTier() > 2) {
-            throw new Exception("Exception in thread \"main\" java.lang.Exception: ERROR: cannot fire an Employee of an equal or greater tier.");
+        if (employee.getTier() >= 2) {
+            throw new Exception("ERROR: cannot fire an Employee of an equal or greater tier.");
         }
         else if(!isIn(employee)) {
-            throw new Exception("Exception in thread \"main\" java.lang.Exception: ERROR: cannot fire an Employee who is not a direct or indirect report.");
+            throw new Exception("ERROR: cannot fire an Employee who is not a direct or indirect report.");
         }
         else {
             System.out.println("LOG: existing Employee fired (" + employee.getName() + ", " + employee.getDepartment() + ", " + employee.getTitle() + ")");

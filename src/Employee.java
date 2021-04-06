@@ -21,9 +21,10 @@ public class Employee implements Comparable {
         this.salary = salary;
     }
 
-    public void adjustSalary(double change, Employee employee) {
-        salary = getSalary();
-        setSalary(change);
+    public void adjustSalary(double change, Employee employee) throws Exception {
+        double currentSalary = employee.getSalary();
+        double newSalary = currentSalary + change;
+        employee.setSalary(newSalary);
     }
 
     public String getName() {
