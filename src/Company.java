@@ -134,7 +134,7 @@ public class Company {
         Manager marketingManager = (Manager) this.getEmployee("Malcolm Merlyn");
         Employee employee = this.getEmployee("Roy Harper");
 
-        director.fire(salesManager);
+         director.fire(salesManager);
         marketingManager.fire(employee);
     }
 
@@ -202,6 +202,43 @@ public class Company {
             System.out.println(e.getMessage());
         }
     }
+
+    //Employee details
+    public void printEmployeeDetails(Employee employee) {
+        System.out.println("Employee     : " + employee.getName());
+        System.out.println("Department   : " + employee.getDepartment());
+        System.out.println("Title        : " + employee.getTitle());
+        System.out.println("Compensation : " + employee.getSalary());
+    }
+
+    public Director getDirector(String department) {
+        for (Employee employee : staff) {
+            if (employee.getDepartment().equals(department) && employee.getTier() == 3) {
+                return (Director) employee;
+            }
+        }
+        return null;
+    }
+//&& employee.getTier() == 1
+    public Employee getEmployee(String name) {
+        for (Employee employee : staff) {
+            if (employee.getName().equals(name) ) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    private void printOrganizationChart() {
+        System.out.println("Queen Industries Organization Chart");
+        for (Employee employee : staff) {
+            if (employee.getTier() == 3) {
+                System.out.println(" - " + employee.getName() + ", " + employee.getTitle());
+            }
+        }
+        System.out.println();
+    }
+
 
     /**
      * Main method executes tests. DO NOT MODIFY.
