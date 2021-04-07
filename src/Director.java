@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Director extends Manager {
     int stockShares;
-    public Director(double salary, int bonus, int stockShares, String name, String department, String title, ArrayList<Employee> reports, int tier) {
+    public Director(double salary, int bonus, int stockShares, String name, String department, String title, ArrayList<Employee> reports, int tier) throws Exception {
         super(salary, bonus, name, department, title, reports, tier);
         this.stockShares = stockShares;
     }
@@ -35,9 +35,6 @@ public class Director extends Manager {
             }
             if (!somewhere) {
                 throw new Exception("ERROR: cannot alter salary of an Employee who is not a report.");
-            }
-            else {
-                employee.adjustSalary(change, employee);
             }
         }
         employee.adjustSalary(change, employee);

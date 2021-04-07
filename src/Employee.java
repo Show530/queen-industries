@@ -1,9 +1,9 @@
 public class Employee implements Comparable {
 
     private double salary;
-    private String name;
-    private String department;
-    private String title;
+    private final String name;
+    private final String department;
+    private final String title;
     private int tier = 1;
 
     public Employee(double salary, String name, String department, String title) {

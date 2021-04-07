@@ -212,7 +212,7 @@ public class Company {
             double total = employee.getSalary() + ((Manager) employee).getBonus();
             System.out.println("Compensation : " + total + "\n");
         }
-        else{
+        else {
             System.out.println("Compensation : " + employee.getSalary() + "\n");
         }
     }

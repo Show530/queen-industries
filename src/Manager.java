@@ -2,13 +2,19 @@ import java.text.spi.BreakIteratorProvider;
 import java.util.ArrayList;
 
 public class Manager extends Employee {
-    private int bonus;
+    private final int bonus;
     public ArrayList<Employee> reports;
 
-    public Manager(double salary, int bonus, String name, String department, String title, ArrayList<Employee> reports, int tier) {
+    public Manager(double salary, int bonus, String name, String department, String title, ArrayList<Employee> reports, int tier) throws Exception {
         super(salary, name, department, title);
         this.bonus = bonus;
-        //error exceptions
+
+        for (Employee report : reports) {
+            if (this.getTier() - report.getTier() != 1) {
+                throw new Exception("ERROR: cannot supervise an Employee of an equal or greater tier.");
+            }
+        }
+
         this.reports = reports;
         super.setTier(tier);
     }
